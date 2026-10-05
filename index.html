@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- imei-csp: injected by scripts/inject-csp.mjs from server/header-policy.json.
+         Present so hosts that cannot set response headers still enforce the policy.
+         WEAKER than the header form: frame-ancestors, report-uri, sandbox are ignored in a meta tag. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'" data-imei-csp />
+    <meta charset="UTF-8" />
+    <!-- No maximum-scale: pinning zoom blocks users who rely on magnification. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- The plate, not --bg: the OS chrome sits above the app, and a splash of
+         the same colour as the page leaves the two regions indistinguishable. -->
+    <meta name="theme-color" content="#0b0f14" />
+    <meta
+      name="description"
+      content="AMAYA Industries IMEI Control Center: interactive IMEI deduplication, asset movement evidence, and conflict review."
+    />
+    <title>IMEI Control Center — AMAYA Industries</title>
+    <!-- Installability (Windows/Edge/Chrome, Android/Chrome) and standalone display. -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <!-- Fonts are vendored, not fetched from a CDN: this app has to work with no
+         network, and a request to fonts.googleapis.com on every load would tell a
+         third party that a device-inventory tool was opened, and from where.
+         Regenerate with `npm run fonts`. -->
+    <link rel="preload" href="/fonts/space-grotesk-500-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/dm-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+    <script type="module" crossorigin src="/assets/index-DPmNGgo9.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-P2bQqE--.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
