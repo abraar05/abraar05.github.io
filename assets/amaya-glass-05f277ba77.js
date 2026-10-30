@@ -526,6 +526,47 @@
   window.addEventListener("resize", function () {
     setTimeout(ensureChip, 80);
   });
+
+  /* ===== Theme toggle ===== */
+  var GLASS_THEMES = ["aurora", "midnight", "steel", "graphite", "paper", "solar"];
+  var GLASS_THEME_LABELS = {
+    aurora: "Aurora", midnight: "Midnight", steel: "Steel",
+    graphite: "Graphite", paper: "Paper", solar: "Solar"
+  };
+
+  function applyGlassTheme(name) {
+    if (GLASS_THEMES.indexOf(name) === -1) name = "aurora";
+    root.setAttribute("data-glass-theme", name);
+    if (name === "paper") {
+      root.setAttribute("data-theme-light", "true");
+    } else {
+      root.removeAttribute("data-theme-light");
+    }
+    try { localStorage.setItem("amaya-glass-theme", name); } catch (e) { }
+    if (window.AmayaAndroid && window.AmayaAndroid.setLightStatusBar) {
+      try { window.AmayaAndroid.setLightStatusBar(name === "paper"); } catch (e) { }
+    }
+  }
+
+  var savedTheme = "aurora";
+  try { savedTheme = localStorage.getItem("amaya-glass-theme") || "aurora"; } catch (e) { }
+  applyGlassTheme(savedTheme);
+
+  var themeBtn = make("button", "amaya-theme-toggle");
+  themeBtn.type = "button";
+  themeBtn.title = "Switch theme";
+  themeBtn.setAttribute("aria-label", "Switch theme");
+  themeBtn.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
+  document.body.appendChild(themeBtn);
+
+  themeBtn.addEventListener("click", function () {
+    var current = root.getAttribute("data-glass-theme") || "aurora";
+    var idx = GLASS_THEMES.indexOf(current);
+    var next = GLASS_THEMES[(idx + 1) % GLASS_THEMES.length];
+    applyGlassTheme(next);
+    showToast("Theme: " + GLASS_THEME_LABELS[next], null, 1800);
+  });
+
   refreshOnline();
   setTimeout(ensureChip, 900);
   setTimeout(ensureChip, 2600);
