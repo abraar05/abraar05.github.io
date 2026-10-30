@@ -17,7 +17,7 @@
  * fetched before it took control — see BUNDLED_DATA.
  */
 
-const BUILD = "1.0.0-9c567745135f-6b5d15ce-16ceb5ee";
+const BUILD = "1.0.0-glass-c8fdfb607e-32c76a8f71";
 const DATA = "9c567745135f";
 
 const SHELL_CACHE = `imei-shell-${BUILD}`;
@@ -40,6 +40,8 @@ const SHELL = [
   "/icons/icon-192.png",
   "/icons/icon-512.png",
   "/icons/maskable-512.png",
+  "/assets/amaya-glass-c8fdfb607e.css",
+  "/assets/amaya-glass-32c76a8f71.js",
   // Vendored fonts. These have stable, unhashed filenames, so listing them is
   // safe: a font change is picked up because it changes BUILD, which names a new
   // shell cache. Without them here the app renders in system fonts offline,
